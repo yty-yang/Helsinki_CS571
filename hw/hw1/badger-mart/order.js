@@ -59,15 +59,24 @@ function roundMoney(num) {
 }
 
 function calculateSubtotal() {
-	return 0.00; // TODO calculateSubtotal
+	let sum = 0;
+	for (let item of ITEMS) {
+		let price = parseFloat(document.getElementById(`${item}-price`).innerText);
+		let num = document.getElementById(`${item}-quantity`).value;
+		sum += price * num;
+	}
+	return sum; // calculateSubtotal
 }
 
 function calculateSalesTax() {
-	return 0.00; // TODO calculateSalesTax
+	const state  = document.getElementById("state-tax").value;
+	let tex_rate = getSalesTaxRateForState(state);
+	let sum = calculateSubtotal();
+	return roundMoney(sum * tex_rate); // calculateSalesTax
 }
 
 function getSalesTaxRateForState(state) {
-	return 0.00; // TODO getSalesTaxRateForState
+	return SALES_TAX[state]; // getSalesTaxRateForState
 }
 
 document.getElementById("btn-what-is-my-sales-tax").addEventListener("click", () => {
@@ -83,4 +92,7 @@ document.getElementById("btn-sales-tax").addEventListener("click", () => {
 	alert("Your sales tax is: $" + calculateSalesTax().toFixed(2));
 });
 
-// TODO Add an event listener to btn-checkout
+// Add an event listener to btn-checkout
+document.getElementById("btn-checkout").addEventListener("click", () => {
+	alert(`Your total is: $${calculateSubtotal() + calculateSalesTax()}`);
+});

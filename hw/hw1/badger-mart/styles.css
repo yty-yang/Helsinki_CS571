@@ -20,11 +20,18 @@ table, th, td {
   inline-size: 500px; 
 }
 
-/* TODO: Add your primary and secondary styling below! */
+/*  Add your primary and secondary styling below! */
 .primary-button {
-
+  color: #535bf2;
+  background-color: coral;
+  border: black;
+  padding: 1em;
 }
 
 .secondary-button {
-  
+  color: darksalmon;
+  background-color: #747bff;
+  border: black;
+  padding: 1em;
+
 }
