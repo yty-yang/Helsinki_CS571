@@ -7,9 +7,9 @@ export default function BadgerSaleItem(props) {
         <h2>{props.name}</h2>
         <p>{props.description}</p>
         <div>
-            <button className="inline" onClick={() => setNum(num - 1)} disabled={num <= 0}>-</button>
+            <button className="inline" onClick={() => setNum(n => n - 1)} disabled={num <= 0}>-</button>
             <p className="inline">{num}</p>
-            <button className="inline" onClick={() => setNum(num + 1)}>+</button>
+            <button className="inline" onClick={() => setNum(n => n + 1)}>+</button>
         </div>
     </div>
 }
