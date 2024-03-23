@@ -14,7 +14,7 @@ export default function CommentBoard(props) {
     function refreshComments() {
         fetch("https://cs571.org/api/s24/ice/comments", {
             headers: {
-                "X-CS571-ID": CS571.getBadgerId()
+                "X-CS571-ID": "bid_7aa1690b9dabcac6bf2f5fbe49c240e522b2f17232ff01a835fdda35db5cf438"
             }
         })
         .then(res => res.json())

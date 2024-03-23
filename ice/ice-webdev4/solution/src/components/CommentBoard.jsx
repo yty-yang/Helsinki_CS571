@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react"
+import {useEffect, useState} from "react"
 import Comment from "./Comment";
 import LoginOrCreatePost from "./LoginOrCreatePost";
-import { Col, Container, Row } from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 
 export default function CommentBoard(props) {
 
@@ -14,13 +14,14 @@ export default function CommentBoard(props) {
     function refreshComments() {
         fetch("https://cs571.org/api/s24/ice/comments", {
             headers: {
-                "X-CS571-ID": CS571.getBadgerId()
+                "X-CS571-ID": "bid_7aa1690b9dabcac6bf2f5fbe49c240e522b2f17232ff01a835fdda35db5cf438",
+
             }
         })
-        .then(res => res.json())
-        .then(comms => {
-            setComments(comms)
-        })
+            .then(res => res.json())
+            .then(comms => {
+                setComments(comms)
+            })
     }
 
     return <div>
@@ -29,7 +30,7 @@ export default function CommentBoard(props) {
         <Container fluid>
             <Row>
                 <Col xs={12} md={6} lg={4} style={{marginBottom: "1rem"}}>
-                    <LoginOrCreatePost refreshComments={refreshComments} />
+                    <LoginOrCreatePost refreshComments={refreshComments}/>
                 </Col>
                 <Col xs={12} md={6} lg={8}>
                     <Container fluid>

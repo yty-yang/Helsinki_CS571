@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import {useRef, useState} from "react";
+import {Button, Form} from "react-bootstrap";
 
 export default function LoginOrCreatePost(props) {
     const usernameRef = useRef();
@@ -17,7 +17,7 @@ export default function LoginOrCreatePost(props) {
             method: "POST",
             credentials: "include",
             headers: {
-                "X-CS571-ID": CS571.getBadgerId(),
+                "X-CS571-ID": "bid_7aa1690b9dabcac6bf2f5fbe49c240e522b2f17232ff01a835fdda35db5cf438",
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
@@ -25,13 +25,13 @@ export default function LoginOrCreatePost(props) {
                 password: passwordRef.current.value
             })
         })
-        .then(res => {
-            if (res.status === 200) {
-                setIsLoggedIn(true)
-            } else {
-                alert("Invalid username/password!")
-            }
-        })
+            .then(res => {
+                if (res.status === 200) {
+                    setIsLoggedIn(true)
+                } else {
+                    alert("Invalid username/password!")
+                }
+            })
     }
 
     function handleCommentSubmit(e) {
@@ -41,20 +41,20 @@ export default function LoginOrCreatePost(props) {
             method: "POST",
             credentials: "include",
             headers: {
-                "X-CS571-ID": CS571.getBadgerId(),
+                "X-CS571-ID": "bid_7aa1690b9dabcac6bf2f5fbe49c240e522b2f17232ff01a835fdda35db5cf438",
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 comment: commentRef.current.value
             })
         })
-        .then(res => {
-            if (res.status === 200) {
-                props.refreshComments();
-            } else {
-                alert("Did you provide a comment?")
-            }
-        })
+            .then(res => {
+                if (res.status === 200) {
+                    props.refreshComments();
+                } else {
+                    alert("Did you provide a comment?")
+                }
+            })
     }
 
     function handleLogout() {
@@ -62,7 +62,8 @@ export default function LoginOrCreatePost(props) {
             method: "POST",
             credentials: "include",
             headers: {
-                "X-CS571-ID": CS571.getBadgerId()
+                "X-CS571-ID": "bid_7aa1690b9dabcac6bf2f5fbe49c240e522b2f17232ff01a835fdda35db5cf438",
+
             }
         }).then(res => {
             if (res.status === 200) {
