@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import {useCallback, useEffect, useState} from "react"
 import Comment from "./Comment";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 
@@ -14,7 +14,7 @@ export default function CommentBoard(props) {
 
     const [comments, setComments] = useState([]);
 
-    function refreshComments() {
+    const refreshComments = useCallback(() => {
         fetch("https://cs571.org/api/s24/ice/comments", {
             headers: {
                 "X-CS571-ID": CS571.getBadgerId()
@@ -24,9 +24,9 @@ export default function CommentBoard(props) {
         .then(comms => {
             setComments(comms)
         })
-    }
+    }, [])
 
-    function handleLoginSubmit(e) {
+    const handleLoginSubmit = useCallback((e, username, password) => {
         e?.preventDefault();
 
         fetch("https://cs571.org/api/s24/ice/login", {
@@ -37,8 +37,8 @@ export default function CommentBoard(props) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                username: inputUsername,
-                password: inputPassword
+                username: username,
+                password: password
             })
         })
         .then(res => {
@@ -48,7 +48,7 @@ export default function CommentBoard(props) {
                 alert("Invalid username/password!")
             }
         })
-    }
+    }, [])
 
     function handleCommentSubmit(e) {
         e?.preventDefault();
@@ -109,13 +109,13 @@ export default function CommentBoard(props) {
                             <br/>
                             <Button type="submit" onClick={handleCommentSubmit}>Post Comment</Button>
                         </Form>
-                    </> : <Form onSubmit={handleLoginSubmit}>
+                    </> : <Form onSubmit={(e) => handleLoginSubmit(e, inputUsername, inputPassword)}>
                         <Form.Label htmlFor="usernameInput">Username</Form.Label>
                         <Form.Control id="usernameInput" value={inputUsername} onChange={(e) => setInputUsername(e.target.value)}></Form.Control>
                         <Form.Label htmlFor="passwordInput">Password</Form.Label>
                         <Form.Control id="passwordInput" type="password" value={inputPassword} onChange={(e) => setInputPassword(e.target.value)}></Form.Control>
                         <br/>
-                        <Button type="submit" onClick={handleLoginSubmit}>Login</Button>
+                        <Button type="submit" onClick={(e) => handleLoginSubmit(e, inputUsername, inputPassword)}>Login</Button>
                     </Form>
                     }
                 </Col>
